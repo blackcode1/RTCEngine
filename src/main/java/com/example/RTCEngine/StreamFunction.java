@@ -15,6 +15,7 @@ public class StreamFunction {
     String output;
     String type;
     String path;
+    String time;
 
 
     public void setFunction(Element e){
@@ -26,6 +27,7 @@ public class StreamFunction {
         this.output = e.element("output").getTextTrim();
         this.type = e.element("type").getTextTrim();
         this.path = e.element("path").getTextTrim();
+        this.time = e.element("windowsize").getTextTrim();
     }
 
     public void setFunction(ResultSet resultSet) throws Exception {

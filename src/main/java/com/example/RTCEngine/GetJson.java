@@ -64,6 +64,8 @@ public class GetJson {
         jarInfo.put("JarClass", f.classpath);
         jarInfo.put("InputType", f.input);
         jarInfo.put("OutputType", f.output);
+        jarInfo.put("Type", f.type);
+        jarInfo.put("WindowSize", f.time);
         return jarInfo;
     }
 
