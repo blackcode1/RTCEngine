@@ -15,7 +15,8 @@ import java.util.*;
 public class RtcEngineMemory {
     public static String flink_path = "";
     public static String flink_url = "";
-    public static String flink_jar_path = "";
+    public static String stream_flink_jar_path = "";
+    public static String batch_flink_jar_path = "";
     public static String xml_root_path = "";
     public static String flink_save_path = "";
     public static String engine_save_path = "";
@@ -44,7 +45,8 @@ public class RtcEngineMemory {
             Element rootElement = document.getRootElement();
             flink_path = rootElement.element("flinkpath").getTextTrim();
             flink_url = rootElement.element("flinkurl").getTextTrim();
-            flink_jar_path = rootElement.element("flinkjarpath").getTextTrim();
+            stream_flink_jar_path = rootElement.element("streamflinkjarpath").getTextTrim();
+            batch_flink_jar_path = rootElement.element("batchflinkjarpath").getTextTrim();
             flink_save_path = rootElement.element("flinksavepath").getTextTrim();
             xml_root_path =  rootElement.element("xmlrootpath").getTextTrim();
             engine_save_path =  rootElement.element("enginesavepath").getTextTrim();
