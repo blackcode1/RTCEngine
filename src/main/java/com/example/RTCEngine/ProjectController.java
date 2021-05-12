@@ -35,7 +35,7 @@ public class ProjectController {
             Element rootElement = document.getRootElement();
             Element p = rootElement.element("project");
             String pid = p.element("uuid").getTextTrim();
-
+            String projectType = p.element("type").getTextTrim(); ;
             newProject.setProject(p);
             for(StreamProject streamProject: RtcEngineMemory.RtcEngineProjectList){
                 if(streamProject.id.equals(newProject.id)){
@@ -61,7 +61,7 @@ public class ProjectController {
                 RtcEngineMemory.addDatasource(ndso);
                 latencyTask.insertDatasource(ndso);
             }
-            res = execProject(pid, waittime);
+            res = execProject(pid, waittime, projectType);
 
         } catch (Exception e) {
             logStr = StreamLog.createExLog(e, "ERROR", "项目启动失败",
@@ -75,7 +75,7 @@ public class ProjectController {
         return res;
     }
 
-    public String execProject(String pid, Integer waittime) throws Exception {
+    public String execProject(String pid, Integer waittime, String projectType) throws Exception {
         String cp_path = "";
         if(RtcEngineMemory.RtcProjectJobID.containsKey(pid)){
             String sps = sendGet(RtcEngineMemory.flink_url+"/jobs/"+RtcEngineMemory.RtcProjectJobID.get(pid)+"/checkpoints");
@@ -95,8 +95,10 @@ public class ProjectController {
         //if(cp_path.length() != 0){
         //    commandStr = commandStr + "-s " + cp_path + " ";
         //}
-
-        commandStr = commandStr + RtcEngineMemory.stream_flink_jar_path + " ";
+        if(projectType.equals("stream"))
+            commandStr = commandStr + RtcEngineMemory.stream_flink_jar_path + " ";
+        else
+            commandStr = commandStr + RtcEngineMemory.batch_flink_jar_path + " ";
         String args = GetJson.createProjectInfo(pid).toJSONString();
 
         String exec_com = commandStr + args;
