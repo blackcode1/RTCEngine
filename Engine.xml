@@ -1,0 +1,60 @@
+<root>
+	<flinkpath>/home/ubuntu/flink-1.9.1</flinkpath>
+	<flinkurl>http://192.168.3.33:8081</flinkurl>
+	<streamflinkjarpath>/home/ubuntu/jar/StreamProject-1.0-SNAPSHOT.jar </streamflinkjarpath>
+	<batchflinkjarpath>/home/ubuntu/jar/BatchProject-1.0-SNAPSHOT.jar </batchflinkjarpath>
+	<flinksavepath>file://home/ubuntu/save</flinksavepath>
+	<engineurl>http://192.168.3.32:8000</engineurl>
+	<xmlrootpath>/home/ubuntu/engine/xml/</xmlrootpath>
+	<enginesavepath>/home/ubuntu/engine.db</enginesavepath>
+	<stateurl>192.168.3.32,192.168.3.33,192.168.3.34</stateurl>
+	<hearttime>60000</hearttime>
+	<datasets>
+		<dataset type="stream" use="test">
+			<uuid>localtest</uuid>
+			<datasource>
+				<uuid>05BE4C54AE0544C7B7265A94E33BF8C2</uuid>
+				<host>192.168.3.32</host>
+				<port>9092</port>
+				<username></username>
+				<password></password>
+				<type>KAFKA</type>
+			</datasource>
+			<topic>LocalTest</topic>
+			<dataid>JSONObject</dataid>
+			<group>asd</group>
+			<offset>0</offset>
+			<starttime>0</starttime>
+		</dataset>
+		<dataset type="stream" use="log">
+			<uuid>log</uuid>
+			<datasource>
+				<uuid>05BE4C54AE0544C7B7265A94E33BF8C2</uuid>
+				<host>192.168.3.32</host>
+				<port>9092</port>
+				<username></username>
+				<password></password>
+				<type>KAFKA</type>
+			</datasource>
+			<topic>EngineHeart</topic>
+			<dataid>JSONObject</dataid>
+			<group>asd</group>
+			<offset>0</offset>
+			<starttime>0</starttime>
+		</dataset>
+		<dataset type="relation">
+			<uuid>conflist</uuid>
+			<query>select plt_paraid, plt_datatype from plt_tsm_templatepara where plt_paratype = '工况参数'</query>
+			<filter set="False"></filter>
+			<datasource>
+				<uuid>195D73B12D25554187B15E51D9C717DB</uuid>
+				<host>192.168.3.31:5432</host>
+				<port></port>
+				<username>postgres</username>
+				<password>123456</password>
+				<table>dataway</table>
+				<type>POSTGRESQL</type>
+			</datasource>
+		</dataset>
+	</datasets>
+</root>

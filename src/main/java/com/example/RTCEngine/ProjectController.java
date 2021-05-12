@@ -95,7 +95,8 @@ public class ProjectController {
         //if(cp_path.length() != 0){
         //    commandStr = commandStr + "-s " + cp_path + " ";
         //}
-        commandStr = commandStr + RtcEngineMemory.flink_jar_path + " ";
+
+        commandStr = commandStr + RtcEngineMemory.stream_flink_jar_path + " ";
         String args = GetJson.createProjectInfo(pid).toJSONString();
 
         String exec_com = commandStr + args;
